@@ -9,7 +9,7 @@ import style from '../../styles/Sidebar.module.css'
 const Sidebar = () => {
 
     const { list } = useSelector(({ categories }) => categories )
-    console.log(list)
+    const listItem = list.slice(0, 5)
 
   return (
     <section className={style.sidebar}>
@@ -18,7 +18,7 @@ const Sidebar = () => {
       </div>
       <nav>
         <ul className={style.menu}>
-          {list.map(({ id, name }) => (
+          {listItem.map(({ id, name }) => (
             <li key={id}>
               <NavLink 
                 className={({ isActive }) => `${style.link} ${isActive ? style.active : ""}`}
