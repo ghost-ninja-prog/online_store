@@ -6,37 +6,37 @@ import { ROUTES } from '../../utils/routes'
 import LOGO from '../../images/logo.svg'
 import AVATAR from '../../images/avatar.jpg'
 
-import st from '../../styles/Header.module.css'
+import style from '../../styles/Header.module.css'
 
 
 const Header = () => {
   return (
-    <div className={st.header}>
-      <div className={st.logo}>
+    <div className={style.header}>
+      <div className={style.logo}>
         <Link to={ROUTES.HOME}>
           <img src={LOGO} alt="logo" />
         </Link>
       </div>
 
-      <div className={st.info}>
-        <div className={st.user}>
-          <div className={st.avatar} style={{ backgroundImage: `url(${ AVATAR })` }}>
+      <div className={style.info}>
+        <div className={style.user}>
+          <div className={style.avatar} style={{ backgroundImage: `url(${ AVATAR })` }}>
           
           </div>
-          <div className={st.username}>
+          <div className={style.username}>
             Guest
           </div>
         </div>
 
-        <form className={st.form}>
+        <form className={style.form}>
 
-          <div className={st.icon}>
+          <div className={style.icon}>
             <svg className='icon'>
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#search`} />
             </svg>
           </div>
 
-          <div className={st.input}>
+          <div className={style.input}>
             <input 
               type='search'
               name='search'
@@ -47,20 +47,20 @@ const Header = () => {
             />
           </div>
 
-          { false && <div className={st.box}></div> }
+          { false && <div className={style.box}></div> }
         </form>
 
-        <div className={st.account}>
-          <Link to={ROUTES.HOME} className={st.favourites}>
-            <svg className={st['icon-fav']}>
+        <div className={style.account}>
+          <Link to={ROUTES.HOME} className={style.favourites}>
+            <svg className={style['icon-fav']}>
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#heart`} />
             </svg>
           </Link>
-          <Link to={ROUTES.CART} className={st.cart}>
-            <svg className={st['icon-cart']}>
+          <Link to={ROUTES.CART} className={style.cart}>
+            <svg className={style['icon-cart']}>
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#bag`} />
             </svg>
-            <span className={st.count}>2</span>
+            <span className={style.count}>2</span>
           </Link>
         </div>
       </div>

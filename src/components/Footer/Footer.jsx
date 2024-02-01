@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import st from '../../styles/Footer.module.css'
+import style from '../../styles/Footer.module.css'
 
 import { ROUTES } from "../../utils/routes"
 
@@ -9,13 +9,13 @@ import LOGO from "../../images/logo.svg"
 
 const Footer = () => {
   return (
-    <section className={st.footer}>
-      <div className={st.logo}>
+    <section className={style.footer}>
+      <div className={style.logo}>
         <Link to={ROUTES.HOME}>
           <img src={LOGO} alt="Stuff" />
         </Link>
       </div>
-      <div className={st.rights}>
+      <div className={style.rights}>
         Developed by {" "}
         <a
           href='https://github.com/ghost-ninja-prog'
@@ -25,7 +25,7 @@ const Footer = () => {
           Demon
         </a>
       </div>
-      <div className={st.socials}>
+      <div className={style.socials}>
         <a
           href='https://www.instagram.com'
           target='_blank'

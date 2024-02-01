@@ -1,28 +1,39 @@
 import React from 'react'
 
-import st from '../../styles/Sidebar.module.css'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
+import style from '../../styles/Sidebar.module.css'
+
 
 const Sidebar = () => {
+
+    const { list } = useSelector(({ categories }) => categories )
+    console.log(list)
+
   return (
-    <section className={st.sidebar}>
-      <div className={st.title}>
+    <section className={style.sidebar}>
+      <div className={style.title}>
         CATEGORIES
       </div>
       <nav>
-        <ul className={st.menu}>
-          <li>
-            <NavLink to={`/categories/${1}`}>
-              Link
-            </NavLink>
-          </li>
+        <ul className={style.menu}>
+          {list.map(({ id, name }) => (
+            <li key={id}>
+              <NavLink 
+                className={({ isActive }) => `${style.link} ${isActive ? style.active : ""}`}
+                to={`/categories/${id}`}>
+                { name }
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
-      <div className={st.footer}>
-        <a href='/help' target='_blank' className={st.link}>
+      <div className={style.footer}>
+        <a href='/help' target='_blank' className={style.link}>
           Help
         </a>
-        <a href='/terms' target='_blank' className={st.link} style={{textDecoration: 'underline'}}>
+        <a href='/terms' target='_blank' className={style.link} style={{textDecoration: 'underline'}}>
           Terms & Conditions
         </a>
       </div>

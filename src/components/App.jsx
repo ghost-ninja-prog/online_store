@@ -13,9 +13,9 @@ function App() {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getCategories())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(getCategories())
+  // }, [dispatch])
 
   return (
     <div className='app'>
