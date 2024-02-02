@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { ROUTES } from '../../utils/routes'
 
@@ -7,9 +8,21 @@ import LOGO from '../../images/logo.svg'
 import AVATAR from '../../images/avatar.jpg'
 
 import style from '../../styles/Header.module.css'
+import { toggleForm } from '../../features/user/userSlice'
 
 
 const Header = () => {
+
+  const { currentUser } = useSelector(({ user }) => user)
+
+  const dispatch = useDispatch()
+
+  const handleClick = () => {
+    if(!currentUser) dispatch(toggleForm(true))
+  }
+
+
+
   return (
     <div className={style.header}>
       <div className={style.logo}>
@@ -19,7 +32,7 @@ const Header = () => {
       </div>
 
       <div className={style.info}>
-        <div className={style.user}>
+        <div className={style.user} onClick={handleClick}>
           <div className={style.avatar} style={{ backgroundImage: `url(${ AVATAR })` }}>
           
           </div>
