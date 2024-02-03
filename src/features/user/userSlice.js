@@ -17,6 +17,41 @@ export const createUser = createAsyncThunk(
     }
 )
 
+export const loginUser = createAsyncThunk(
+    'users/loginUser', 
+    async (payload, thunkAPI) => {
+        try {
+            const res = await axios.post(`${BASE_URL}/auth/login`, payload)
+            const login = await axios(`${BASE_URL}/auth/profile`, {
+                headers: {
+                    "Authorization": `Bearer ${res.data.access_token}`
+                }
+            })
+            return login.data
+        } catch (error) {
+            console.log(error)
+            return thunkAPI.rejectWithValue(error)
+        }
+    }
+)
+
+export const updateUser = createAsyncThunk(
+    'users/updateUser', 
+    async (payload, thunkAPI) => {
+        try {
+            const res = await axios.put(`${BASE_URL}/users/${payload.id}`, payload)
+            return res.data
+        } catch (error) {
+            console.log(error)
+            return thunkAPI.rejectWithValue(error)
+        }
+    }
+)
+
+const addCurrenUser = (state, action) => {
+    state.currentUser = action.payload
+}
+
 const userSlice = createSlice({
     name: 'user',
     initialState: {
@@ -41,21 +76,23 @@ const userSlice = createSlice({
         },
         toggleForm: (state, { payload }) => {
             state.showform = payload
-        }
+        },
+        toggleFormType: (state, { payload }) => {
+            state.formType = payload
+        },
     },
     extraReducers: (builder) => {
     //     builder.addCase(getCategories.pending, (state) => {
     //         state.isLoading = true
     //     });
-        builder.addCase(createUser.fulfilled, (state, action) => {
-            state.currentUser = action.payload
-        });
-    //     builder.addCase(getCategories.rejected, (state) => {
-    //         state.isLoading = false
-    //     })
+        builder.addCase(createUser.fulfilled, addCurrenUser)
+        builder.addCase(loginUser.fulfilled, addCurrenUser)
+        builder.addCase(updateUser.fulfilled, addCurrenUser)
     }
 })
 
-export const { addItemToCart, toggleForm } = userSlice.actions
+export const { addItemToCart, toggleForm, toggleFormType } = userSlice.actions
 
 export default userSlice.reducer
+
+// https://sun4-21.userapi.com/s/v1/ig2/2U139KVnoRpE8YyJwF8VTyGq7WQwpwb7lGidRCTIw2Bl-EW0xv8RVqmUSklV4V4jzYo1tsx7KbI2qgbL9s-gzCX6.jpg?size=50x50&quality=95&crop=0,84,628,628&ava=1

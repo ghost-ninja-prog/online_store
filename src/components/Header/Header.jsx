@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { ROUTES } from '../../utils/routes'
@@ -13,13 +13,26 @@ import { toggleForm } from '../../features/user/userSlice'
 
 const Header = () => {
 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+
   const { currentUser } = useSelector(({ user }) => user)
 
-  const dispatch = useDispatch()
+  const [values, setValues] = useState({name: 'Guest', avatar: AVATAR})
+
 
   const handleClick = () => {
     if(!currentUser) dispatch(toggleForm(true))
+    else navigate(ROUTES.PROFILE)
   }
+
+  useEffect(() => {
+    if(!currentUser) return
+
+    setValues(currentUser)
+
+  }, [currentUser])
 
 
 
@@ -33,11 +46,11 @@ const Header = () => {
 
       <div className={style.info}>
         <div className={style.user} onClick={handleClick}>
-          <div className={style.avatar} style={{ backgroundImage: `url(${ AVATAR })` }}>
+          <div className={style.avatar} style={{ backgroundImage: `url(${ values.avatar })` }}>
           
           </div>
           <div className={style.username}>
-            Guest
+            { values.name }
           </div>
         </div>
 
