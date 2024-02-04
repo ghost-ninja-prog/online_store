@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import AppRoutes from './Routes/Routes'
-import Header from './Header/Header'
-import Sidebar from './Sideber/Sidebar'
-import Footer from './Footer/Footer'
-import UserForm from './User/UserForm'
+import AppRoutes from '../Routes/Routes'
+import Header from '../Header/Header'
+import Sidebar from '../Sideber/Sidebar'
+import Footer from '../Footer/Footer'
+import UserForm from '../User/UserForm'
 
-import { getCategories } from '../features/categories/categoriesSlice'
-import { getProducts } from '../features/products/productsSlice'
+import { getCategories } from '../../features/categories/categoriesSlice'
+import { getProducts } from '../../features/products/productsSlice'
 
 
 function App() {

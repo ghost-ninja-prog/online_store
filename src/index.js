@@ -7,7 +7,7 @@ import './styles/index.css'
 
 import { store } from './features/store'
 
-import App from './components/App'
+import App from './components/App/App'
 
 
 const root = document.getElementById('root')

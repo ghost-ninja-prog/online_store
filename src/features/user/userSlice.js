@@ -94,5 +94,3 @@ const userSlice = createSlice({
 export const { addItemToCart, toggleForm, toggleFormType } = userSlice.actions
 
 export default userSlice.reducer
-
-// https://sun4-21.userapi.com/s/v1/ig2/2U139KVnoRpE8YyJwF8VTyGq7WQwpwb7lGidRCTIw2Bl-EW0xv8RVqmUSklV4V4jzYo1tsx7KbI2qgbL9s-gzCX6.jpg?size=50x50&quality=95&crop=0,84,628,628&ava=1
